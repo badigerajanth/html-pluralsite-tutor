@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let fname="ajanth";
+        let lname= "badiger";
+
+        let person={
+            fname:"ajanth",
+            lname:"badiger",
+            greet: function(){
+                console.log("my name is "+ this.fname +" "+this.lname)
+            }
+        };
+
+
+        //let num=[1,2,3,4,5,6,7,8,9,10];
+        let num=[100,true,"ajanyth"];
+
+
+        console.log(num.length);
+
+        for(let i=num.length-1;i>=0;i--){
+            console.log(num[i]);
+        }
+
+
+
+        let days=["mon","tue","wed"];
+        days.forEach(function(day,index){
+            console.log(`days: ${day}, index : ${index}`);
+
+        });
+
+
+    </script>
+    
+</body>
+</html>
