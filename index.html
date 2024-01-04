@@ -28,7 +28,7 @@
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="pies.html">Pies</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="contact.html"class="navlinks" target="_self">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -53,6 +53,18 @@
             </ul>
         </nav>
     </footer>
+    <script>
+        window.addEventListener("DOMContentLoaded", function(){
+            alert("Page is loaded");
+        });
+        window.addEventListener("orientationchange", function(){
+            let screen=window.screen;
+            let angle=screen.orientation.angle;
+            let type=screen.orientation.type;
+            console.log(`angle: ${angle}, type: ${type}`);
+
+        });
+     </script>
 </body>
 
 </html>
