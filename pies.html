@@ -7,11 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pies</title>
     <style>
-        h1{
+        h1 {
             font-size: 2em;
             margin-top: 0.5em;
         }
-        .banner{
+
+        .banner {
             max-width: 100%;
         }
     </style>
@@ -31,11 +32,11 @@
     <main>
         <aside><img src="/images/logo.png" alt="logo"></img></aside>
         <article>
-            
+
             <section class="column-desktop">
 
                 <div class="pie">
-                    <img src="images/apple-pie.png" alt="Apple Pie"/>
+                    <img src="images/apple-pie.png" alt="Apple Pie" />
                     <div class="columns">
                         <div class="title">Apple Pie</div>
                         <div class="price">$19.99</div>
@@ -45,7 +46,7 @@
                 </div>
 
                 <div class="pie">
-                    <img src="images/cherry-pie.png" alt="Cherry Pie"/>
+                    <img src="images/cherry-pie.png" alt="Cherry Pie" />
                     <div class="columns">
                         <div class="title">Cherry Pie</div>
                         <div class="price">$19.99</div>
@@ -55,7 +56,7 @@
                 </div>
 
             </section>
-        
+
         </article>
     </main>
 
@@ -69,5 +70,30 @@
         </nav>
     </footer>
 </body>
+<script>
+    window.addEventListener("DOMContentLoaded", function () {
+        const orderButtons = document.querySelectorAll("button[data-order]");
+        orderButtons.forEach(function (button) {
+            button.addEventListener("click", function (e) {
+                const button = e.currentTarget;
+                const container = button.parentNode;
+
+                const order ={
+                    id:button.getAttribute("data-order"),
+                    title: container.querySelector(".title").innerText,
+                    price: container.querySelector(".price").innerText,
+                    desc:container.querySelector(".desc").innerText
+                };
+                localStorage.setItem("ORDER",JSON.stringify(order));
+                const url=window.location.href.replace("pies.html","order.html");
+                window.location.href=url;
+
+            });
+
+        });
+
+
+    });
+</script>
 
 </html>
