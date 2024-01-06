@@ -84,7 +84,7 @@
                     price: container.querySelector(".price").innerText,
                     desc:container.querySelector(".desc").innerText
                 };
-                localStorage.setItem("ORDER",JSON.stringify(order));
+                localStorage.setItem("order",JSON.stringify(order));
                 const url=window.location.href.replace("pies.html","order.html");
                 window.location.href=url;
 

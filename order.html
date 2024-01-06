@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="site.css" type="text/css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pie Shop</title>
+    <style>
+        @media only screen and (min-width: 768px) {
+            article {
+                width: 400px;
+            }
+
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-top: 0.5em;
+        }
+
+        .banner {
+            max-width: 100%;
+        }
+
+        .sub-title {
+            background-color: rgba(255, 255, 255, 0.749);
+            font-size: 1.5em;
+            padding: 10px;
+        }
+
+        .input-group input,
+        .input-group textarea,
+        .input-group select {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: solid 1px #999;
+            border-radius: 4px;
+            width: 100%;
+        }
+
+        lable {
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        input[type="reset"] {
+            cursor: pointer;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="pies.html">Pies</a></li>
+                <li><a href="contact.html" class="navlinks" target="_self">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <aside><img src="/images/logo.png" alt="logo"></img></aside>
+        <article>
+
+            <h1>Order</h1>
+            <div class="pie"><img src="" alt="" />
+                <div class="columns">
+                    <div class="title"></div>
+                    <div class="price"></div>
+                </div>
+                <p class="desc"></p>
+            </div>
+
+
+            <form action="http://localhost:8080/api/post" method="POST">
+                <input type="hidden" id="pie-order" name="pie-order">
+                <input type="hidden" id="location" name="location">
+
+                <div class="input-group">
+                    <div>
+                        <lable for="first-name">First name</lable>
+                    </div>
+                    <div><input type="text" name="first-name" id="first-name" /></div>
+                </div>
+
+                <div class="input-group">
+                    <div>
+                        <lable for="last-name">Last name</lable>
+                    </div>
+                    <div><input type="text" name="last-name" id="last-name" /></div>
+                </div>
+
+                <div class="input-group">
+                    <div>
+                        <lable for="address">Address</lable>
+                    </div>
+                    <div><input type="text" name="address" id="address" /></div>
+                </div>
+
+                <div class="input-group">
+                    <div>
+                        <lable for="first-name">State</lable>
+                    </div>
+                    <div>
+                        <select name="state" id="state">
+                            <option value="" selected>[ Select One ]</option>
+                            <option value="Andhra-Pradesh">Andhra Pradesh</option>
+                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                            <option value="Assam">Assam</option>
+                            <option value="Bihar">Bihar</option>
+                            <option value="Chhattisgarh">Chhattisgarh</option>
+                            <option value="Goa">Goa</option>
+                            <option value="Gujarat">Gujarat</option>
+                            <option value="Haryana">Haryana</option>
+                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                            <option value="Jharkhand">Jharkhand</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Kerala">Kerala</option>
+                            <option value="Madhya-Pradesh">Madhya Pradesh</option>
+                            <option value="Maharashtra">Maharashtra</option>
+                            <option value="Manipur">Manipur</option>
+                            <option value="Meghalaya">Meghalaya</option>
+                            <option value="Mizoram">Mizoram</option>
+                            <option value="Nagaland">Nagaland</option>
+                            <option value="Odisha">Odisha</option>
+                            <option value="Punjab">Punjab</option>
+                            <option value="Rajasthan">Rajasthan</option>
+                            <option value="Sikkim">Sikkim</option>
+                            <option value="Tamil-Nadu">Tamil Nadu</option>
+                            <option value="Telangana">Telangana</option>
+                            <option value="Tripura">Tripura</option>
+                            <option value="Uttar-Pradesh">Uttar Pradesh</option>
+                            <option value="Uttarakhand">Uttarakhand</option>
+                            <option value="West-Bengal">West Bengal</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <div>
+                        <lable for="postal-code">Postal Code</lable>
+                    </div>
+                    <div><input type="text" name="postal-code" id="postal-code" /></div>
+                </div>
+
+
+                <div class="input-group">
+                    <div>
+                        <lable for="comments">Comments</lable>
+                    </div>
+                    <div>
+                        <textarea name="comments" id="comments" cols="30" rows="10"></textarea>
+                    </div>
+                </div>
+
+                <input type="reset" value="Reset" />
+                <input type="submit" value="Order" />
+
+
+            </form>
+
+        </article>
+    </main>
+
+    <footer>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="pies.html">Pies</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </footer>
+    <script>
+        window.addEventListener("DOMContentLoaded", function () {
+            let locationBox = document.querySelector("#location");
+            let location = {
+                longitude: "unknown",
+                latitude: "unknown"
+
+            };
+            window.navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    location={
+                        latitude:position.coords.latitude,
+                        longitude:position.coords.longitude
+                    };
+                    locationBox.value=JSON.stringify(location);
+
+                },
+                function (error) {
+                    locationBox.value=JSON.stringify(location);
+
+                });
+
+
+            const order = localStorage.getItem("order");
+
+            if (order) {
+                const pieOrder = JSON.parse(order);
+                const orderType = document.querySelector("#pie-order");
+                orderType.value = order;
+
+                const pie = document.querySelector(".pie");
+
+                const title = pie.querySelector(".title");
+                const price = pie.querySelector(".price");
+                const desc = pie.querySelector(".desc");
+                const img = pie.querySelector("img");
+
+                title.innerHTML = pieOrder.title;
+                price.innerHTML = pieOrder.price;
+                desc.innerHTML = pieOrder.desc;
+                img.setAttribute("src", `images/${pieOrder.id}.png`);
+
+
+
+            }
+
+        });
+
+    </script>
+</body>
+
+</html>
